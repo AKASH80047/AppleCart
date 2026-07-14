@@ -63,15 +63,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/images/iPhone1.jpg
-    - assets/images/iPhone2.jpeg
-    - assets/images/iPhone3.jpg
-    - assets/images/iPhone4.jpeg
-    - assets/images/MacBookAir.png
-    - assets/images/SmartwatchUltra.png
-    - assets/images/iPhone15Pro.png
-    - assets/images/AirPodsPro.png
-    - assets/images/homepod.png
+    - assets/images/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -437,8 +437,6 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                       ],
                     ),
 
-                    const SizedBox(height: 35),
-
                     const Text(
                       "A Snapshot View",
                       style: TextStyle(
@@ -446,7 +444,55 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                         fontSize: 20,
                       ),
                     ),
-
+                    const SizedBox(height: 15),
+                    SizedBox(
+                      height: 120,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: product.gallery.length,
+                        itemBuilder: (context, index) {
+                          final isSelected = selectedImage == index;
+                          return GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                selectedImage = index;
+                              });
+                            },
+                            child: Container(
+                              width: 120,
+                              margin: const EdgeInsets.only(right: 12),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(18),
+                                border: Border.all(
+                                  color: isSelected
+                                      ? const Color(0xff2878E5)
+                                      : Colors.transparent,
+                                  width: 2,
+                                ),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.08),
+                                    blurRadius: 8,
+                                    offset: const Offset(0, 4),
+                                  ),
+                                ],
+                              ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(16),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10),
+                                  child: Image.asset(
+                                    product.gallery[index],
+                                    fit: BoxFit.contain,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
                     const SizedBox(height: 25),
 
                     const Text(

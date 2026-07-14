@@ -46,6 +46,8 @@ const List<Product> products = [
     isFavorite: false,
     gallery: [
       "assets/images/SmartwatchUltra.png",
+      "assets/images/SmartwatchUltra_side.png",
+      "assets/images/SmartwatchUltra_screen.png",
     ],
     colors: [
       "Black",
@@ -72,6 +74,7 @@ const List<Product> products = [
     isFavorite: false,
     gallery: [
       "assets/images/iPhone15Pro.png",
+      "assets/images/iPhone15Pro_back.png",
     ],
     colors: [
       "Natural Titanium",
@@ -102,6 +105,7 @@ const List<Product> products = [
     isFavorite: false,
     gallery: [
       "assets/images/AirPodsPro.png",
+      "assets/images/AirPodsPro_open.png",
     ],
     colors: [
       "White",
@@ -126,6 +130,7 @@ const List<Product> products = [
     isFavorite: false,
     gallery: [
       "assets/images/MacBookAir.png",
+      "assets/images/MacBookAir_side.png",
     ],
     colors: [
       "Midnight",
@@ -155,6 +160,7 @@ const List<Product> products = [
     isFavorite: false,
     gallery: [
       "assets/images/homepod.png",
+      "assets/images/homepod_blue.png",
     ],
     colors: [
       "Space Grey",
