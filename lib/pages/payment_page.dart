@@ -55,28 +55,43 @@ class _PaymentPageState extends State<PaymentPage> {
               itemBuilder: (context, index) {
                 final item = methods[index];
 
+                final isSelected = selectedPayment == index;
                 return Card(
                   margin: const EdgeInsets.only(bottom: 14),
+                  elevation: 0,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),
+                    side: BorderSide(
+                      color: isSelected ? const Color(0xff2878E5) : const Color(0xffE2E8F0),
+                      width: isSelected ? 2 : 1,
+                    ),
                   ),
-                  child: RadioListTile<int>(
-                    value: index,
-                    groupValue: selectedPayment,
-                    onChanged: (value) {
+                  child: ListTile(
+                    onTap: () {
                       setState(() {
-                        selectedPayment = value!;
+                        selectedPayment = index;
                       });
                     },
-                    secondary: Icon(
-                      item["icon"],
-                      color: const Color(0xff2878E5),
+                    leading: Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        color: const Color(0xffEFF6FF),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Icon(
+                        item["icon"],
+                        color: const Color(0xff2878E5),
+                      ),
                     ),
                     title: Text(
                       item["title"],
                       style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                     subtitle: Text(item["subtitle"]),
+                    trailing: Icon(
+                      isSelected ? Icons.check_circle : Icons.radio_button_unchecked,
+                      color: isSelected ? const Color(0xff2878E5) : Colors.grey,
+                    ),
                   ),
                 );
               },

@@ -4,6 +4,8 @@ import 'pages/chat_page.dart';
 import 'pages/cart_page.dart';
 import 'pages/profile_page.dart';
 import 'pages/wishlist_page.dart';
+import 'pages/login_page.dart';
+import 'pages/register_page.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,11 +39,13 @@ class AppleMart extends StatelessWidget {
       ),
 
       routes: {
-  "/chat": (context) => const ChatPage(),
-  "/wishlist": (context) => const WishlistPage(),
-  "/cart": (context) => const CartPage(),
-  "/profile": (context) => const ProfilePage(),
-},
+        "/chat": (context) => const ChatPage(),
+        "/wishlist": (context) => const WishlistPage(),
+        "/cart": (context) => const CartPage(),
+        "/profile": (context) => const ProfilePage(),
+        "/login": (context) => const LoginPage(),
+        "/register": (context) => const RegisterPage(),
+      },
     );
   }
 }
