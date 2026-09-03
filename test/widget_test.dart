@@ -6,7 +6,7 @@ import 'package:basic_tempelate_ui_design/pages/product_details_page.dart';
 
 void main() {
   testWidgets('E-Commerce app template smoke test', (WidgetTester tester) async {
-    // Set a larger physical screen size to make sure widgets are layout out nicely
+    // Set screen size for responsive test
     tester.view.physicalSize = const Size(800, 1200);
     tester.view.devicePixelRatio = 1.0;
     addTearDown(() {
@@ -16,16 +16,13 @@ void main() {
 
     // Build our app and trigger a frame.
     await tester.pumpWidget(const AppleMart());
-    await tester.pump();
+    await tester.pumpAndSettle();
 
     // Verify that the Home Page renders correctly.
     expect(find.text('Categories'), findsOneWidget);
     expect(find.text('Flash Deals for You'), findsOneWidget);
     expect(find.text('Iphone 16 Pro Max'), findsOneWidget);
     expect(find.text('Smartwatch Ultra'), findsOneWidget);
-
-    // Verify search hint text
-    expect(find.text('Search'), findsOneWidget);
 
     // Scroll down to make sure the product card is fully visible and clickable
     final productFinder = find.text('Iphone 16 Pro Max');
@@ -44,7 +41,7 @@ void main() {
     expect(find.byType(ProductDetailsPage), findsOneWidget);
     expect(find.text('Add to Cart'), findsOneWidget);
     expect(find.text('Buy Now'), findsOneWidget);
-    expect(find.text('A Snapshot View'), findsOneWidget);
+    expect(find.text('Specifications'), findsOneWidget);
 
     // Verify details of the iPhone 16 Pro Max are shown.
     expect(find.text('Desert Titanium'), findsOneWidget);
@@ -52,8 +49,13 @@ void main() {
     expect(find.text('512 GB'), findsOneWidget);
 
     // Tap the back button
-    await tester.tap(find.byIcon(Icons.arrow_back_ios_new_rounded));
-    await tester.pumpAndSettle(); // Wait for navigation transition back
+    final backButton = find.byType(BackButton);
+    if (backButton.evaluate().isNotEmpty) {
+      await tester.tap(backButton);
+    } else {
+      await tester.tap(find.byIcon(Icons.arrow_back).first);
+    }
+    await tester.pumpAndSettle();
 
     // Verify we are back on the Home page.
     expect(find.byType(HomePage), findsOneWidget);

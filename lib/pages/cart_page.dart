@@ -77,46 +77,140 @@ class _CartPageState extends State<CartPage> {
               );
             }
 
-            return Column(
-              children: [
-                _buildAppBar(isEmpty: false),
-                Expanded(
-                  child: SingleChildScrollView(
-                    padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
-                    child: Column(
-                      children: [
-                        ListView.builder(
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemCount: cartItems.length,
-                          itemBuilder: (context, index) {
-                            final item = cartItems[index];
-                            return Padding(
-                              padding: const EdgeInsets.only(bottom: 14),
-                              child: _buildCartItem(item),
-                            );
-                          },
-                        ),
-                        const SizedBox(height: 22),
-                        _buildPromoCode(),
-                        const SizedBox(height: 24),
-                        _buildPriceSummary(),
-                      ],
+            return LayoutBuilder(
+              builder: (context, constraints) {
+                final isDesktop = constraints.maxWidth >= 960;
+
+                if (isDesktop) {
+                  return Center(
+                    child: ConstrainedBox(
+                      constraints: const BoxConstraints(maxWidth: 1240),
+                      child: Column(
+                        children: [
+                          _buildAppBar(isEmpty: false),
+                          Expanded(
+                            child: SingleChildScrollView(
+                              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  // Left Column: Items
+                                  Expanded(
+                                    flex: 3,
+                                    child: ListView.builder(
+                                      shrinkWrap: true,
+                                      physics: const NeverScrollableScrollPhysics(),
+                                      itemCount: cartItems.length,
+                                      itemBuilder: (context, index) {
+                                        final item = cartItems[index];
+                                        return Padding(
+                                          padding: const EdgeInsets.only(bottom: 14),
+                                          child: _buildCartItem(item),
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                  const SizedBox(width: 28),
+                                  // Right Column: Order Summary & Checkout
+                                  Expanded(
+                                    flex: 2,
+                                    child: Column(
+                                      children: [
+                                        _buildPromoCode(),
+                                        const SizedBox(height: 20),
+                                        _buildPriceSummary(),
+                                        const SizedBox(height: 20),
+                                        SizedBox(
+                                          width: double.infinity,
+                                          height: 52,
+                                          child: ElevatedButton(
+                                            onPressed: () {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (_) => const CheckoutPage(),
+                                                ),
+                                              );
+                                            },
+                                            style: ElevatedButton.styleFrom(
+                                              backgroundColor: const Color(0xff2878E5),
+                                              foregroundColor: Colors.white,
+                                              elevation: 0,
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.circular(14),
+                                              ),
+                                            ),
+                                            child: const Text(
+                                              "Proceed to Checkout",
+                                              style: TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ),
-              ],
+                  );
+                }
+
+                return Column(
+                  children: [
+                    _buildAppBar(isEmpty: false),
+                    Expanded(
+                      child: SingleChildScrollView(
+                        padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
+                        child: Column(
+                          children: [
+                            ListView.builder(
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemCount: cartItems.length,
+                              itemBuilder: (context, index) {
+                                final item = cartItems[index];
+                                return Padding(
+                                  padding: const EdgeInsets.only(bottom: 14),
+                                  child: _buildCartItem(item),
+                                );
+                              },
+                            ),
+                            const SizedBox(height: 22),
+                            _buildPromoCode(),
+                            const SizedBox(height: 24),
+                            _buildPriceSummary(),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                );
+              },
             );
           },
         ),
       ),
-      bottomNavigationBar: ListenableBuilder(
-        listenable: CartManager(),
-        builder: (context, _) {
-          if (CartManager().items.isEmpty) {
-            return const SizedBox.shrink();
-          }
-          return _buildCheckoutSection();
+      bottomNavigationBar: LayoutBuilder(
+        builder: (context, constraints) {
+          final isDesktop = constraints.maxWidth >= 960;
+          if (isDesktop) return const SizedBox.shrink();
+
+          return ListenableBuilder(
+            listenable: CartManager(),
+            builder: (context, _) {
+              if (CartManager().items.isEmpty) {
+                return const SizedBox.shrink();
+              }
+              return _buildCheckoutSection();
+            },
+          );
         },
       ),
     );

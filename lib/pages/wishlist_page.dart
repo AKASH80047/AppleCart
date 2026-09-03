@@ -10,6 +10,7 @@ class WishlistPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFF8F9FD),
       appBar: AppBar(
         title: const Text(
           "Wishlist",
@@ -51,9 +52,14 @@ class WishlistPage extends StatelessWidget {
                     icon: const Icon(Icons.shopping_bag_outlined),
                     label: const Text("Continue Shopping"),
                     style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF2878E5),
+                      foregroundColor: Colors.white,
                       padding: const EdgeInsets.symmetric(
                         horizontal: 30,
                         vertical: 14,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
                       ),
                     ),
                   ),
@@ -62,27 +68,42 @@ class WishlistPage extends StatelessWidget {
             );
           }
 
-          return GridView.builder(
-            padding: const EdgeInsets.all(16),
-            itemCount: favoriteProducts.length,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              crossAxisSpacing: 14,
-              mainAxisSpacing: 14,
-              childAspectRatio: 0.63,
-            ),
-            itemBuilder: (context, index) {
-              final product = favoriteProducts[index];
-              return ProductCard(
-                product: product,
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => ProductDetailsPage(product: product),
+          return LayoutBuilder(
+            builder: (context, constraints) {
+              final isDesktop = constraints.maxWidth >= 960;
+              final isTablet = constraints.maxWidth >= 640 && constraints.maxWidth < 960;
+
+              return Center(
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 1240),
+                  child: GridView.builder(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: isDesktop ? 24 : 16,
+                      vertical: 16,
                     ),
-                  );
-                },
+                    itemCount: favoriteProducts.length,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: isDesktop ? 4 : (isTablet ? 3 : 2),
+                      crossAxisSpacing: 16,
+                      mainAxisSpacing: 16,
+                      childAspectRatio: isDesktop ? 0.72 : (isTablet ? 0.68 : 0.63),
+                    ),
+                    itemBuilder: (context, index) {
+                      final product = favoriteProducts[index];
+                      return ProductCard(
+                        product: product,
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => ProductDetailsPage(product: product),
+                            ),
+                          );
+                        },
+                      );
+                    },
+                  ),
+                ),
               );
             },
           );

@@ -38,10 +38,13 @@ class ProfilePage extends StatelessWidget {
                 ),
             ],
           ),
-          body: SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-            child: Column(
-              children: [
+          body: Center(
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 760),
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                child: Column(
+                  children: [
                 // ==========================
                 // USER PROFILE HEADER CARD
                 // ==========================
@@ -409,7 +412,9 @@ class ProfilePage extends StatelessWidget {
               ],
             ),
           ),
-        );
+        ),
+      ),
+    );
       },
     );
   }

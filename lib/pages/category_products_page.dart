@@ -56,105 +56,125 @@ class _CategoryProductsPageState extends State<CategoryProductsPage> {
         ),
         centerTitle: true,
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Sorting chips
-          SizedBox(
-            height: 50,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-              itemCount: sortOptions.length,
-              itemBuilder: (context, index) {
-                final option = sortOptions[index];
-                final isSelected = selectedSort == option;
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          final isDesktop = constraints.maxWidth >= 960;
+          final isTablet = constraints.maxWidth >= 640 && constraints.maxWidth < 960;
 
-                return Padding(
-                  padding: const EdgeInsets.only(right: 8),
-                  child: ChoiceChip(
-                    label: Text(
-                      option,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: isSelected ? Colors.white : Colors.black87,
+          return Center(
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 1240),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Sorting chips
+                  SizedBox(
+                    height: 50,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: isDesktop ? 24 : 16,
+                        vertical: 4,
                       ),
-                    ),
-                    selected: isSelected,
-                    selectedColor: const Color(0xFF2878E5),
-                    backgroundColor: Colors.white,
-                    side: BorderSide(
-                      color: isSelected
-                          ? const Color(0xFF2878E5)
-                          : Colors.grey.shade300,
-                    ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    onSelected: (selected) {
-                      if (selected) {
-                        setState(() {
-                          selectedSort = option;
-                        });
-                      }
-                    },
-                  ),
-                );
-              },
-            ),
-          ),
-          const SizedBox(height: 8),
-          Expanded(
-            child: displayedProducts.isEmpty
-                ? Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.shopping_bag_outlined,
-                          size: 80,
-                          color: Colors.grey.shade400,
-                        ),
-                        const SizedBox(height: 16),
-                        Text(
-                          "No Products in ${widget.categoryName}",
-                          style: const TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey,
-                          ),
-                        ),
-                      ],
-                    ),
-                  )
-                : GridView.builder(
-                    padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
-                    itemCount: displayedProducts.length,
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 14,
-                          mainAxisSpacing: 14,
-                          childAspectRatio: 0.63,
-                        ),
-                    itemBuilder: (context, index) {
-                      final product = displayedProducts[index];
-                      return ProductCard(
-                        product: product,
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (_) =>
-                                  ProductDetailsPage(product: product),
+                      itemCount: sortOptions.length,
+                      itemBuilder: (context, index) {
+                        final option = sortOptions[index];
+                        final isSelected = selectedSort == option;
+
+                        return Padding(
+                          padding: const EdgeInsets.only(right: 8),
+                          child: ChoiceChip(
+                            label: Text(
+                              option,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: isSelected ? Colors.white : Colors.black87,
+                              ),
                             ),
-                          );
-                        },
-                      );
-                    },
+                            selected: isSelected,
+                            selectedColor: const Color(0xFF2878E5),
+                            backgroundColor: Colors.white,
+                            side: BorderSide(
+                              color: isSelected
+                                  ? const Color(0xFF2878E5)
+                                  : Colors.grey.shade300,
+                            ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            onSelected: (selected) {
+                              if (selected) {
+                                setState(() {
+                                  selectedSort = option;
+                                });
+                              }
+                            },
+                          ),
+                        );
+                      },
+                    ),
                   ),
-          ),
-        ],
+                  const SizedBox(height: 8),
+                  Expanded(
+                    child: displayedProducts.isEmpty
+                        ? Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.shopping_bag_outlined,
+                                  size: 80,
+                                  color: Colors.grey.shade400,
+                                ),
+                                const SizedBox(height: 16),
+                                Text(
+                                  "No Products in ${widget.categoryName}",
+                                  style: const TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.grey,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )
+                        : GridView.builder(
+                            padding: EdgeInsets.fromLTRB(
+                              isDesktop ? 24 : 16,
+                              8,
+                              isDesktop ? 24 : 16,
+                              16,
+                            ),
+                            itemCount: displayedProducts.length,
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: isDesktop ? 4 : (isTablet ? 3 : 2),
+                              crossAxisSpacing: 16,
+                              mainAxisSpacing: 16,
+                              childAspectRatio: isDesktop ? 0.72 : (isTablet ? 0.68 : 0.63),
+                            ),
+                            itemBuilder: (context, index) {
+                              final product = displayedProducts[index];
+                              return ProductCard(
+                                product: product,
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) =>
+                                          ProductDetailsPage(product: product),
+                                    ),
+                                  );
+                                },
+                              );
+                            },
+                          ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
       ),
     );
   }
