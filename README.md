@@ -1,288 +1,70 @@
-# 🚀 Flutter Learning Hub
+# 🛍️ AppleCart — Modern Mobile E-Commerce Application (iOS & Android)
 
-<p align="center">
-  <h2 align="center">Learn Flutter from Beginner to Advanced 🚀</h2>
-  <p align="center">
-    A complete collection of Flutter concepts, projects, source code, and interview preparation.
-  </p>
-</p>
+<div align="center">
 
----
+  <img src="https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white" />
+  <img src="https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white" />
+  <img src="https://img.shields.io/badge/BLoC_Pattern-02569B?style=for-the-badge&logo=flutter&logoColor=white" />
+  <img src="https://img.shields.io/badge/Dio_REST_API-005571?style=for-the-badge&logo=postman&logoColor=white" />
+  <img src="https://img.shields.io/badge/Firebase_Auth-FFCA28?style=for-the-badge&logo=firebase&logoColor=black" />
 
-# 👋 Welcome
+  <br/><br/>
 
-Hello! I'm **Akash Pandey**, a passionate Flutter Developer and Computer Science Engineering student.
+  <!-- QUICK HIRE CTA -->
+  <a href="https://www.fiverr.com/akashpandey318" target="_blank">
+    <img src="https://img.shields.io/badge/Hire_Me_on_Fiverr-1DBF73?style=for-the-badge&logo=fiverr&logoColor=white" height="36" />
+  </a>
+  &nbsp;
+  <a href="https://www.upwork.com/freelancers/~01e0a297e6e580e0c0" target="_blank">
+    <img src="https://img.shields.io/badge/Hire_on_Upwork-14A800?style=for-the-badge&logo=upwork&logoColor=white" height="36" />
+  </a>
+  &nbsp;
+  <a href="https://akp991892-portfolio.web.app" target="_blank">
+    <img src="https://img.shields.io/badge/Live_Portfolio-0A66C2?style=for-the-badge&logo=googlechrome&logoColor=white" height="36" />
+  </a>
 
-This repository documents my Flutter learning journey. Every topic includes detailed explanations, complete source code, practical examples, and real-world implementations.
-
-Whether you're a beginner starting with Flutter or an experienced developer looking to revise concepts, this repository aims to be a valuable learning resource.
-
----
-
-# 🎯 Repository Goals
-
-* Learn Flutter step by step.
-* Understand every concept with practical examples.
-* Build production-ready Flutter applications.
-* Write clean, maintainable, and scalable code.
-* Master Flutter through real-world projects.
-* Help beginners learn Flutter easily.
-* Prepare for Flutter interviews.
+</div>
 
 ---
 
-# 📚 Topics Covered
+## 📱 About the Project
 
-## 🟢 Dart Programming
-
-* Variables
-* Data Types
-* Operators
-* Conditions
-* Loops
-* Functions
-* Collections
-* Classes & Objects
-* OOP Concepts
-* Exception Handling
-* Async & Await
-* Futures
-* Streams
+**AppleCart** is an end-to-end modern e-commerce mobile application designed for high-conversion shopping experiences. Built with **Flutter, BLoC State Management, and Clean Architecture**, it provides instantaneous product filtering, offline cart caching, multi-step checkout, and seamless payment integration.
 
 ---
 
-## 🔵 Flutter Basics
+## ⚡ Key Features
 
-* Flutter Architecture
-* Project Structure
-* Widgets
-* MaterialApp
-* Scaffold
-* AppBar
-* Text
-* Container
-* Row
-* Column
-* Stack
-* Expanded
-* Flexible
-* Padding
-* SizedBox
-* SafeArea
-* MediaQuery
+- 🛒 **Dynamic Cart & Checkout Engine**: Live calculation of taxes, discounts, delivery fees, and promo coupons.
+- 🔍 **Real-Time Search & Multi-Attribute Filters**: Fast search with category, price range, and stock availability filters.
+- 🔐 **Secure Authentication**: Firebase Phone OTP & Email authentication with persistent login state.
+- 📦 **Order Lifecycle & Tracking**: Live status timelines from order placement to doorstep delivery.
+- 💳 **Payment Gateway Ready**: Pre-architected adapters for Stripe, Razorpay, and PayPal.
 
 ---
 
-## 🎨 UI Development
+## 🏗️ Architecture & Engineering Design
 
-* Responsive UI
-* Custom Widgets
-* Themes
-* Fonts
-* Icons
-* Animations
-* Dark Mode
-* Material Design
-* Cupertino Widgets
+```
+lib/
+├── core/               # Theme, network client, route generators, error models
+├── data/               # Remote data sources, local storage (Hive), models
+├── domain/             # Entities, repositories interfaces, use cases
+└── presentation/       # BLoC cubits, widgets, pages & responsive screens
+```
 
----
-
-## 📱 Navigation
-
-* Named Routes
-* Navigator 1.0
-* Navigator 2.0
-* Go Router
-* Deep Linking
+- **Architecture**: Domain-Driven Clean Architecture
+- **State Management**: flutter_bloc / Cubit
+- **Networking**: Dio with interceptors & automated retry handlers
+- **Local Cache**: Hive NoSQL for offline shopping cart & wishlists
 
 ---
 
-## 📦 State Management
+## 💼 Need a High-Converting E-Commerce App for Your Business?
 
-* setState
-* Provider
-* Riverpod
-* BLoC
-* Cubit
-* GetX
+I build tailor-made mobile e-commerce platforms with custom backends, real-time inventory, and payment gateways.
 
----
-
-## 🌐 Networking
-
-* HTTP Package
-* Dio
-* REST APIs
-* JSON Parsing
-* Error Handling
-* API Integration
-* Pagination
-
----
-
-## 🔥 Firebase
-
-* Firebase Setup
-* Authentication
-* Firestore
-* Storage
-* Cloud Messaging
-* Crashlytics
-* Analytics
-
----
-
-## 💾 Local Storage
-
-* Shared Preferences
-* Hive
-* SQLite
-* Isar
-
----
-
-## 🏗 Architecture
-
-* MVC
-* MVVM
-* Clean Architecture
-* SOLID Principles
-* Repository Pattern
-* Dependency Injection
-
----
-
-## 🧪 Testing
-
-* Unit Testing
-* Widget Testing
-* Integration Testing
-
----
-
-## 🚀 Deployment
-
-* Android Build
-* iOS Build
-* Play Store Deployment
-* App Store Deployment
-
----
-
-# 📂 Projects
-
-This repository contains complete Flutter projects including:
-
-* E-Commerce App
-* Online Examination System
-* Dairy Farming Management App
-* Digital Visiting Card
-* Expense Tracker
-* Weather App
-* Notes App
-* Calculator
-* Todo App
-* Chat Application
-* Food Delivery UI
-* Portfolio App
-
-Each project includes:
-
-* Source Code
-* Folder Structure
-* Screenshots
-* Features
-* Explanation
-* Best Practices
-
----
-
-# 📖 Every Topic Includes
-
-✅ Introduction
-
-✅ Theory
-
-✅ Source Code
-
-✅ Line-by-Line Explanation
-
-✅ Flow Diagram
-
-✅ Output
-
-✅ Real World Examples
-
-✅ Interview Questions
-
-✅ Practice Questions
-
-✅ Assignments
-
-✅ Best Practices
-
-✅ Common Mistakes
-
-✅ Tips & Tricks
-
----
-
-# 🛠 Tech Stack
-
-* Flutter
-* Dart
-* Firebase
-* REST APIs
-* Riverpod
-* Provider
-* Git
-* GitHub
-* Android Studio
-* VS Code
-* Postman
-* Figma
-
----
-
-# 🤝 Contributions
-
-Contributions are welcome!
-
-If you have suggestions, improvements, or bug fixes, feel free to:
-
-* Fork this repository
-* Create a new branch
-* Commit your changes
-* Open a Pull Request
-
----
-
-# ⭐ Support
-
-If this repository helps you:
-
-⭐ Star this repository.
-
-🍴 Fork it.
-
-📢 Share it with your friends.
-
-💙 Follow my GitHub profile.
-
----
-
-# 📈 My Mission
-
-My mission is to build high-quality Flutter applications, contribute to open source, and help developers learn Flutter through practical examples and well-documented code.
-
-I believe that consistent learning, hands-on practice, and sharing knowledge are the keys to becoming a better software engineer.
-
----
-
-# 🙏 Thank You
-
-Thank you for visiting this repository.
-
-I hope it helps you in your Flutter journey.
-
-Happy Coding! 🚀💙
+- 🎯 **Order on Fiverr**: [fiverr.com/akashpandey318](https://www.fiverr.com/akashpandey318)
+- 💼 **Hire on Upwork**: [Upwork Profile](https://www.upwork.com/freelancers/~01e0a297e6e580e0c0)
+- 🌐 **Portfolio**: [akp991892-portfolio.web.app](https://akp991892-portfolio.web.app)
+- 📧 **Direct Email**: [akp991892@gmail.com](mailto:akp991892@gmail.com)
